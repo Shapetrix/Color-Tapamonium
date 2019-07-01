@@ -10,20 +10,20 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: none;
 }
 header {
   display: flex;
   justify-content: center;
 }
-.button {
-  background-color: #4CAF50; /* Green */
+.playBtn {
+  background-image: url(../img/playBtn.svg);
+  background-color: rgba(0, 0, 0, 0.0);
+  height: 80px;
+  width: 80px;
   border: none;
-  color: yellow;
-  padding: 20px 120px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
-  font-size: 16px;
 }
 
 svg {
@@ -31,7 +31,7 @@ svg {
   display: block;
 }
 
-.radial-bars svg {
+.gamePlay svg {
   stroke: green;
   stroke-width: 3;
   fill: white;

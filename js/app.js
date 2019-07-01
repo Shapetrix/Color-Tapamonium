@@ -49,6 +49,11 @@ var gameStore = {
   },
 };
 var scoreBoard = document.getElementById(gameStore.score.selectorByID);
+function test (){
+  alert('clickme');
+  const bob = new gamePlay();
+  bob.loadGame();
+}
 function updateScore(value) {
   //console.log("value: "+value);
   //console.log("current: "+gameStore.score.current);
