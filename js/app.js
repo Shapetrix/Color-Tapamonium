@@ -21,7 +21,7 @@ var gameOverHub = {
 
 var barTimer;
 var gameStore = {
-  selector: ".radial-bars",
+  selector: ".gamePlay",
   viewbox: '0 0 300 300',
   score: {
     selectorByID: "Score",
@@ -65,7 +65,7 @@ function endGameAnim(){
 }
 
 
-class RadialBars {
+class gamePlay {
    constructor() {
      this.updateGame();
      this.initChart();
@@ -96,7 +96,7 @@ class RadialBars {
     this.removeHub();
     var i = 0;
     while (i < gameStore.bars.count)  {
-      
+
       this.makeBar();
       i++;
     };
@@ -169,4 +169,4 @@ class RadialBars {
       }, 1150);
    }
 }
-const testRadialBars = new RadialBars();
+const testRadialBars = new gamePlay();

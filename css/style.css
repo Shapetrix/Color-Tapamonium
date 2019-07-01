@@ -32,7 +32,7 @@ svg {
 }
 
 .radial-bars svg {
-  stroke: black;
+  stroke: green;
   stroke-width: 3;
   fill: white;
   height: 100vh;
@@ -44,7 +44,6 @@ svg {
 
 progress[value] {
   /* Rest the default appearance */
-
   -webkit-appearance: none;
   appearance: none;
 
