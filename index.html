@@ -14,10 +14,17 @@
   <body>
     <button type="button" onclick="alert('fish'); fishFunction();" name="testButton">ClickMe</button>
     <div id="svg-container">
-      <svg id="svg-1" height="100%" width="100%" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <circle class="startHud" r="75" cx="75" cy="75"></circle>
-        <circle class="userBtn" r="25" cx="25" cy="25"></circle>
-        <circle class="quitBtn" r="15" cx="15" cy="15"></circle>
+      <svg id="svg-1" height="100%" width="100%" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <g transform = translate(75,250)>
+          <circle class="startHud" r="75" cx="75" cy="75"></circle>
+          <g transform = translate(35,150)>
+            <circle class="userBtn" r="25" cx="25" cy="25"></circle>
+          </g>
+          <g transform = translate(50,50)>
+            <circle class="quitBtn" r="15" cx="15" cy="15"></circle>
+          </g>
+        </g>
+
       </svg>
     </div>
   </body>
