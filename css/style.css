@@ -1,88 +1,32 @@
 html, body {
-  height: auto;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
-body {
-  background-color: #c2c2c2;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: none;
-}
-header {
-  display: flex;
-  justify-content: center;
-}
-.userBtn {
-  background-image: url(../img/playBtn.svg);
-  background-color: rgba(0, 0, 0, 0.0);
-  height: 80px;
-  width: 80px;
-  border: none;
-  text-align: center;
-  display: inline-block;
-}
-.colorTapTitle{
-  background-image: url(../img/colorTapTitle.svg);
-  background-color: rgba(0, 0, 0, 0.0);
-  height: 60px;
-  width: 160px;
-  border: none;
-  text-align: center;
-  position: : absolute;
-  z-index: -1
-}
-.quitBtn {
-  background-image: url(../img/quitBtn.svg);
-  background-color: rgba(0, 0, 0, 0.0);
-  height: 60px;
-  width: 60px;
-  border: none;
-  text-align: center;
-  display: inline-block;
+
+#svg-container {
+  background-color: purple;
+  height: 100%;
 }
 
-.gameBoard {
-  height: auto;
-  width: 100%;
-  text-align: center;
-  border: 1px solid white;
+#svg-1 {
+  display: block;
+  margin: auto;
+  height: 100%;
 }
 
 .startHud {
-background-image: url(../img/startHud.svg);
-background-color: rgba(0, 0, 0, 0.0);
-height: 200px;
-width: 200px;
-border: none;
-margin: auto;
-position: absolute;
-top:0;
-right:0;
-bottom:0;
-left:0;
-}
-
-svg {
-  background-color: black;
-  margin: auto;
-  position: relative;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-}
-
-.gamePlay svg {
+  fill: white;
   stroke: green;
   stroke-width: 3;
-  fill: white;
-  height: 100vh;
-  max-height: 500px;
-  transform: rotate(0deg);
-  transition-property: transform;
-  transition-timing-function: ease-in-out;
+}
+.quitBtn {
+  fill: rgb(162, 42, 42);
+  stroke: rgb(123, 36, 36);
+  stroke-width: 3;
+}
+.userBtn {
+  fill: rgb(30, 214, 69);
+  stroke: rgb(45, 123, 36);
+  stroke-width: 3;
 }
