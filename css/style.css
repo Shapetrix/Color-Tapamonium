@@ -1,10 +1,10 @@
 html, body {
-  height: 100%;
+  height: auto;
   padding: 0;
   margin: 0;
 }
 body {
-  background-color: #000;
+  background-color: #c2c2c2;
   color: white;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@ header {
   display: flex;
   justify-content: center;
 }
-.playBtn {
+.userBtn {
   background-image: url(../img/playBtn.svg);
   background-color: rgba(0, 0, 0, 0.0);
   height: 80px;
@@ -25,10 +25,55 @@ header {
   text-align: center;
   display: inline-block;
 }
+.colorTapTitle{
+  background-image: url(../img/colorTapTitle.svg);
+  background-color: rgba(0, 0, 0, 0.0);
+  height: 60px;
+  width: 160px;
+  border: none;
+  text-align: center;
+  position: : absolute;
+  z-index: -1
+}
+.quitBtn {
+  background-image: url(../img/quitBtn.svg);
+  background-color: rgba(0, 0, 0, 0.0);
+  height: 60px;
+  width: 60px;
+  border: none;
+  text-align: center;
+  display: inline-block;
+}
+
+.gameBoard {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  border: 1px solid white;
+}
+
+.startHud {
+background-image: url(../img/startHud.svg);
+background-color: rgba(0, 0, 0, 0.0);
+height: 200px;
+width: 200px;
+border: none;
+margin: auto;
+position: absolute;
+top:0;
+right:0;
+bottom:0;
+left:0;
+}
 
 svg {
   background-color: black;
-  display: block;
+  margin: auto;
+  position: relative;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
 }
 
 .gamePlay svg {
@@ -40,34 +85,4 @@ svg {
   transform: rotate(0deg);
   transition-property: transform;
   transition-timing-function: ease-in-out;
-}
-
-progress[value] {
-  /* Rest the default appearance */
-  -webkit-appearance: none;
-  appearance: none;
-
-  width: 322px;
-  height: 20px;
-}
-
-progress[value]::-webkit-progress-bar{
-  background-color: #eee;
-  border-radius: 2px;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.45) inset;
-}
-
-progress[value]::-webkit-progress-value {
-  background-image:
-
-  -webkit-linear-gradient(-45deg,
-  transparent 33%, rgba(0, 0, 0, .1) 33%,
-  rgba(0,0, 0, .1) 66%, transparent 66%),
-  -webkit-linear-gradient(top,
-  rgba(255, 255, 255, .25),
-  rgba(0, 0, 0, .25)),
-  -webkit-linear-gradient(left, #09c, #f44);
-
-  border-radius: 2px;
-  background-size: 35px 20px, 100% 100%, 100% 100%;
 }

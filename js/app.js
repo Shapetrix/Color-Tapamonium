@@ -6,7 +6,13 @@ var gameManager = {
 
 var startHub = {
   // this will hold the playBtn and circle hub with title of game
-
+  d3.select(gameStore.selector).selectAll("svg")
+    .append("circle")
+    .classed("hub", true)
+    .attr("r", 50)
+    .attr("fill", "white")
+    .attr("stroke","green").attr("stroke-width",3)
+    .attr('transform', 'translate'+gameStore.hub.hubcenter);
 };
 
 var gameHub = {
@@ -22,7 +28,7 @@ var gameOverHub = {
 var barTimer;
 var gameStore = {
   selector: ".gamePlay",
-  viewbox: '0 0 300 300',
+  viewBox: '0 0 300 300',
   score: {
     selectorByID: "Score",
     current: 0,
@@ -48,6 +54,7 @@ var gameStore = {
     }
   },
 };
+
 var scoreBoard = document.getElementById(gameStore.score.selectorByID);
 function test (){
   alert('clickme');
