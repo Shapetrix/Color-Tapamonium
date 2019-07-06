@@ -17,16 +17,13 @@ html, body {
 
 .startHud {
   fill: white;
-  stroke: green;
+  stroke: black;
   stroke-width: 3;
 }
-.quitBtn {
+#quitBtn {
   fill: rgb(162, 42, 42);
-  stroke: rgb(123, 36, 36);
   stroke-width: 3;
 }
-.userBtn {
+#userBtn {
   fill: rgb(30, 214, 69);
-  stroke: rgb(45, 123, 36);
-  stroke-width: 3;
 }
