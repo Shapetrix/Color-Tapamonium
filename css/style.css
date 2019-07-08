@@ -14,16 +14,28 @@ html, body {
   margin: auto;
   height: 100%;
 }
+#colorTitleD3ID{
 
-.startHud {
+}
+#startHudD3ID {
+
+}
+.startHud{
   fill: white;
   stroke: black;
-  stroke-width: 3;
+  stroke-width: 2;
 }
-#quitBtn {
-  fill: rgb(162, 42, 42);
-  stroke-width: 3;
+#quitBtnD3ID {
+
 }
-#userBtn {
+.quitBtn{
+  fill: #e21e56;
+  stroke: #e21e56;
+}
+#userBtnD3ID {
+
+}
+.userBtn{
   fill: #7ec434;
+  stroke: #7ec434;
 }
