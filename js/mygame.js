@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
   });
   d3.select('#quitBtnD3ID').on("click", function(){alert('i quit')});
-  d3.select('#colorTitleD3ID').attr('transform', 'translate(' + 65 + ',' + -300 + ')').transition('#colorTitleD3ID')
+  d3.select('#colorTitleD3ID').attr('transform', 'translate(' + 65 + ',' + -300 + ')')
+  .transition('#colorTitleD3ID')
   .duration(1200)
   .attr('transform', 'translate(' + 65 + ',' + 35 + ')');
 });
