@@ -75,7 +75,7 @@ let colorTM = {
     .duration(colorTM.bars.bar.durationTime)
     .transition()
     .attr('height', 10)
-    .delay(colorTM.bars.bar.delayTime).duration(colorTm.bars.bar.durationTime);
+    .delay(colorTM.bars.bar.delayTime).duration(colorTM.bars.bar.durationTime);
     barTimer = d3.timer(function(duration){
       if (duration > colorTM.bars.bar.durationTime){
         colorTM.quitGame();
