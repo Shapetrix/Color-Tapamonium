@@ -10,17 +10,12 @@ body{
   align-items: center;
 }
 
-#svg-container {
+.svg-container {
   background-color: #333333;
   height: auto;
   width: 100%;
 }
 
-#svg-1 {
-  display: block;
-  margin: auto;
-  height: 100%;
-}
 #colorTitleD3ID{
 
 }

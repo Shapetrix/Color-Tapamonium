@@ -1,11 +1,8 @@
 var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
-  /*
-  d3.xml('img/playBtn.svg').mimeType('image/svg+xml').get(function(error,xml){
-    if (error) throw error;
-    d3.select('#colorTitleD3ID').node().appendChild(xml.documentElement);
-  });
-  */
+  colorTM.makeBoard();
+  colorTM.startGame();
+  colorTM.makeHud();
   d3.select('#userBtnD3ID').on("click", colorTM.startGame);
   d3.select('#quitBtnD3ID').on("click", colorTM.quitGame);
   d3.select('#colorTitleD3ID')
@@ -14,18 +11,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
   .duration(1200)
   .attr('transform', 'translate(' + 65 + ',' + 35 + ')');
 });
-/*
-function startGame(){
-  //alert('play');
-  d3.select('#colorTitleD3ID')
-  .attr('transform', 'translate(' + 65 + ',' + 35 + ')')
-  .transition('#colorTitleD3ID')
-  .duration(1200)
-  .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
-}
-*/
 
 let colorTM = {
+  mainObject: null,
+  mainSelect: '.svg-container',
+  viewBox: '0 0 400 800',
+  score:{
+    selectorByID: "Score",
+    current: 0,
+    maxPlayer: 0,
+  },
+  hub: {
+    center:'(200,400)'
+  },
   bars: {
     width: 20,
     height: 200,
@@ -43,14 +41,40 @@ let colorTM = {
       }
     }
   },
+  makeBoard(){
+    d3.select(colorTM.mainSelect).selectAll('svg').remove();
+    colorTM.main = d3.select(colorTM.mainSelect);
+    colorTM.main.append('svg')
+    .attr('viewBox',colorTM.viewBox);
+  },
+  makeHud(){
+    colorTM.startHud = d3.select(colorTM.mainSelect);
+    colorTM.startHud.append('svg:image')
+    .attr('xlink:href', './img/startHud.svg')
+    .attr('width',300)
+    .attr('height',300)
+    .attr('x',0)
+    .attr('y',0);
+  },
   startGame(){
     //alert('play');
+    /*
     d3.select('#colorTitleD3ID')
     .attr('transform', 'translate(' + 65 + ',' + 35 + ')')
     .transition('#colorTitleD3ID')
     .duration(1200)
     .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
-    colorTM.makeBar();
+    */
+
+    colorTM.colorTitle = d3.select(colorTM.mainSelect);
+    colorTM.colorTitle.append('svg:image')
+    .attr('xlink:href', './img/colorTapTitle.svg')
+    .attr('width',300)
+    .attr('height',200)
+    .attr('x',0)
+    .attr('y',0);
+
+  //colorTM.makeBar();
   },
   quitGame(){
     alert('i quit');
