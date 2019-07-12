@@ -57,7 +57,7 @@ let colorTM = {
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
-    d3.select('#svg-1')
+    d3.select('svg')
     .append('rect')
     .attr('height', 10)
     .attr('width', colorTM.bars.width)
@@ -66,7 +66,7 @@ let colorTM = {
     .attr('x', -colorTM.bars.width/2)
     .attr('y', -colorTM.bars.width/2)
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
-    .attr('transform', "translate(75, 250) rotate("+degrees+")")
+    .attr('transform', "translate(0, 0) rotate("+degrees+")")
     .style('fill', colorTM.bars.bar.attr.fill);
     d3.selectAll('rect')
     .attr('height', 10)
