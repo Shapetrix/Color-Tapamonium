@@ -11,9 +11,8 @@ body{
 }
 
 .svg-container {
-  background-color: #333333;
-  height: auto;
-  width: 100%;
+border: 1px blue solid;
+
 }
 
 #colorTitleD3ID{

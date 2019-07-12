@@ -1,8 +1,8 @@
 var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
-  colorTM.makeBoard();
-  //colorTM.startGame();
-  //colorTM.makeHud();
+//  colorTM.makeHud();
+//  colorTM.makeBoard();
+//  colorTM.startGame();
   /*
   d3.select('#userBtnD3ID').on("click", colorTM.startGame);
   d3.select('#quitBtnD3ID').on("click", colorTM.quitGame);
