@@ -1,30 +1,22 @@
 var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
 //  colorTM.makeHud();
-//  colorTM.makeBoard();
+  colorTM.makeBoard();
 //  colorTM.startGame();
-  /*
-  d3.select('#userBtnD3ID').on("click", colorTM.startGame);
-  d3.select('#quitBtnD3ID').on("click", colorTM.quitGame);
-  d3.select('#colorTitleD3ID')
-  .attr('transform', 'translate(' + 65 + ',' + -300 + ')')
-  .transition('#colorTitleD3ID')
-  .duration(1200)
-  .attr('transform', 'translate(' + 65 + ',' + 35 + ')');
-  */
 });
-/*
-function startGame(){
-  //alert('play');
-  d3.select('#colorTitleD3ID')
-  .attr('transform', 'translate(' + 65 + ',' + 35 + ')')
-  .transition('#colorTitleD3ID')
-  .duration(1200)
-  .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
-}
-*/
 
 let colorTM = {
+  mainObject: null,
+  mainSelect: '.svg-container',
+  viewBox: '0 0 400 800',
+  score:{
+    selectorByID: "Score",
+    current: 0,
+    maxPlayer: 0,
+  },
+  hub: {
+    center:'(200,400)'
+  },
   bars: {
     width: 20,
     height: 200,
@@ -72,7 +64,6 @@ let colorTM = {
     .transition('#colorTitleD3ID')
     .duration(1200)
     .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
-    */
 
     colorTM.colorTitle = d3.select(colorTM.mainSelect);
     colorTM.colorTitle.append('g')
