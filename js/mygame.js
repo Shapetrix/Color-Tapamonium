@@ -9,21 +9,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
   d3.select('#userBtnD3ID').on("click", colorTM.startGame);
   d3.select('#quitBtnD3ID').on("click", colorTM.quitGame);
   d3.select('#colorTitleD3ID')
-  .attr('transform', 'translate(' + 65 + ',' + -300 + ')')
+  .attr('transform', 'translate(0,-300)')
   .transition('#colorTitleD3ID')
   .duration(1200)
-  .attr('transform', 'translate(' + 65 + ',' + 35 + ')');
+  .attr('transform', 'translate(0,0)');
 });
-/*
-function startGame(){
-  //alert('play');
-  d3.select('#colorTitleD3ID')
-  .attr('transform', 'translate(' + 65 + ',' + 35 + ')')
-  .transition('#colorTitleD3ID')
-  .duration(1200)
-  .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
-}
-*/
 
 let colorTM = {
   bars: {
@@ -46,10 +36,10 @@ let colorTM = {
   startGame(){
     //alert('play');
     d3.select('#colorTitleD3ID')
-    .attr('transform', 'translate(' + 65 + ',' + 35 + ')')
+    .attr('transform', 'translate(0,0)')
     .transition('#colorTitleD3ID')
     .duration(1200)
-    .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
+    .attr('transform', 'translate(0,-300)');
     colorTM.makeBar();
   },
   quitGame(){
@@ -57,24 +47,24 @@ let colorTM = {
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
-    d3.select('#svg-1')
+    d3.select('.bars')
     .append('rect')
-    .attr('height', 10)
+    .attr('height', colorTM.bars.width)
     .attr('width', colorTM.bars.width)
     .attr('rx', colorTM.bars.width/2)
     .attr('ry', colorTM.bars.width/2)
     .attr('x', -colorTM.bars.width/2)
     .attr('y', -colorTM.bars.width/2)
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
-    .attr('transform', "translate(75, 250) rotate("+degrees+")")
+    .attr('transform', 'translate(0, 0) rotate('+degrees+')')
     .style('fill', colorTM.bars.bar.attr.fill);
     d3.selectAll('rect')
-    .attr('height', 10)
+    .attr('height', colorTM.bars.width)
     .transition()
     .attr('height', colorTM.bars.height)
     .duration(colorTM.bars.bar.durationTime)
     .transition()
-    .attr('height', 10)
+    .attr('height', colorTM.bars.width)
     .delay(colorTM.bars.bar.delayTime).duration(colorTM.bars.bar.durationTime);
     barTimer = d3.timer(function(duration){
       if (duration > colorTM.bars.bar.durationTime){
