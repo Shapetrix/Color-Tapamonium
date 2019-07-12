@@ -1,8 +1,9 @@
 var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
-  colorTM.startGame();
-  colorTM.makeHud();
+  //colorTM.startGame();
+  //colorTM.makeHud();
+  /*
   d3.select('#userBtnD3ID').on("click", colorTM.startGame);
   d3.select('#quitBtnD3ID').on("click", colorTM.quitGame);
   d3.select('#colorTitleD3ID')
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   .transition('#colorTitleD3ID')
   .duration(1200)
   .attr('transform', 'translate(' + 65 + ',' + 35 + ')');
+  */
 });
 
 let colorTM = {
@@ -45,7 +47,15 @@ let colorTM = {
     d3.select(colorTM.mainSelect).selectAll('svg').remove();
     colorTM.main = d3.select(colorTM.mainSelect);
     colorTM.main.append('svg')
-    .attr('viewBox',colorTM.viewBox);
+    .attr('viewBox',colorTM.viewBox)
+    .append('g')
+    .classed('colorTitleD3ID',true)
+    .append('svg:image')
+    .attr('xlink:href', './img/colorTapTitle.svg')
+    .attr('width',300)
+    .attr('height',200)
+    .attr('x',50)
+    .attr('y',0);
   },
   makeHud(){
     colorTM.startHud = d3.select(colorTM.mainSelect);
@@ -67,7 +77,9 @@ let colorTM = {
     */
 
     colorTM.colorTitle = d3.select(colorTM.mainSelect);
-    colorTM.colorTitle.append('svg:image')
+    colorTM.colorTitle.append('g')
+    .classed('colorTitleD3ID',true)
+    .append('svg:image')
     .attr('xlink:href', './img/colorTapTitle.svg')
     .attr('width',300)
     .attr('height',200)
