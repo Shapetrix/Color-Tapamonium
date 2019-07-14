@@ -35,11 +35,21 @@ let colorTM = {
     }
   },
   makeBoard(){
-    d3.select(colorTM.mainSelect).selectAll('svg').remove();
+
     colorTM.main = d3.select(colorTM.mainSelect);
-    colorTM.main.append('svg')
-    .attr('viewBox',colorTM.viewBox)
-    .append('g')
+    colorTM.svg = colorTM.main.append('svg')
+    colorTM.svg.attr('viewBox',colorTM.viewBox)
+
+    colorTM.svg.append('g')
+    .classed('colorTitleD3ID',true)
+    .append('svg:image')
+    .attr('xlink:href', './img/startHud.svg')
+    .attr('width',300)
+    .attr('height',300)
+    .attr('x',0)
+    .attr('y',0)
+
+    colorTM.svg.append('g')
     .classed('colorTitleD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/colorTapTitle.svg')
@@ -47,35 +57,13 @@ let colorTM = {
     .attr('height',200)
     .attr('x',50)
     .attr('y',0);
+
   },
   makeHud(){
-    colorTM.startHud = d3.select(colorTM.mainSelect);
-    colorTM.startHud.append('svg:image')
-    .attr('xlink:href', './img/startHud.svg')
-    .attr('width',300)
-    .attr('height',300)
-    .attr('x',0)
-    .attr('y',0);
+
   },
   startGame(){
-    //alert('play');
-    d3.select('#colorTitleD3ID')
-    .attr('transform', 'translate(' + 65 + ',' + 35 + ')')
-    .transition('#colorTitleD3ID')
-    .duration(1200)
-    .attr('transform', 'translate(' + 65 + ',' + -300 + ')');
 
-    colorTM.colorTitle = d3.select(colorTM.mainSelect);
-    colorTM.colorTitle.append('g')
-    .classed('colorTitleD3ID',true)
-    .append('svg:image')
-    .attr('xlink:href', './img/colorTapTitle.svg')
-    .attr('width',300)
-    .attr('height',200)
-    .attr('x',0)
-    .attr('y',0);
-
-  //colorTM.makeBar();
   },
   quitGame(){
     alert('i quit');
