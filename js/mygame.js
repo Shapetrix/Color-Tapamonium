@@ -39,24 +39,43 @@ let colorTM = {
     colorTM.main = d3.select(colorTM.mainSelect);
     colorTM.svg = colorTM.main.append('svg')
     colorTM.svg.attr('viewBox',colorTM.viewBox)
-
+    // draw order is from top to bottom
+    // startHud group
     colorTM.svg.append('g')
-    .classed('colorTitleD3ID',true)
+    .classed('startHudD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/startHud.svg')
-    .attr('width',300)
-    .attr('height',300)
-    .attr('x',0)
-    .attr('y',0)
-
+    .attr('width',175)
+    .attr('height',175)
+    .attr('x',110)
+    .attr('y',250)
+    // userBtn group
+    colorTM.svg.append('g')
+    .classed('userBtnD3ID',true)
+    .append('svg:image')
+    .attr('xlink:href', './img/playBtn.svg')
+    .attr('width',55)
+    .attr('height',55)
+    .attr('x',170)
+    .attr('y',365)
+    // quitBtn group
+    colorTM.svg.append('g')
+    .classed('quitBtnD3ID',true)
+    .append('svg:image')
+    .attr('xlink:href', './img/quitBtn.svg')
+    .attr('width',35)
+    .attr('height',35)
+    .attr('x',225)
+    .attr('y',368)
+    // colorTapTitle group
     colorTM.svg.append('g')
     .classed('colorTitleD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/colorTapTitle.svg')
-    .attr('width',300)
-    .attr('height',200)
-    .attr('x',50)
-    .attr('y',0);
+    .attr('width',200)
+    .attr('height',100)
+    .attr('x',90)
+    .attr('y',245);
 
   },
   makeHud(){
