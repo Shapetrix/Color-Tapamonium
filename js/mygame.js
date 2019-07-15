@@ -1,8 +1,10 @@
 var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
-//  colorTM.makeHud();
   colorTM.makeBoard();
-//  colorTM.startGame();
+  d3.select('.userBtnD3ID').on("click", colorTM.startGame);
+  d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
+
+
 });
 
 let colorTM = {
@@ -35,7 +37,7 @@ let colorTM = {
     }
   },
   makeBoard(){
-
+    // selects the svg-container and appends an svg tag and sets a viewBox
     colorTM.main = d3.select(colorTM.mainSelect);
     colorTM.svg = colorTM.main.append('svg')
     colorTM.svg.attr('viewBox',colorTM.viewBox)
@@ -76,13 +78,12 @@ let colorTM = {
     .attr('height',100)
     .attr('x',90)
     .attr('y',245);
-
   },
   makeHud(){
 
   },
   startGame(){
-
+    alert('lets Play!');
   },
   quitGame(){
     alert('i quit');
