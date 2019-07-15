@@ -16,9 +16,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
 });
 
 let colorTM = {
+  score: {
+    current: 0,
+  },
   bars: {
-    width: 20,
-    height: 200,
+    width: 30,
+    height: 150,
     count: 1,
     timeout: 10000,
     pntValAttr: "pointValue",
@@ -43,12 +46,15 @@ let colorTM = {
     colorTM.makeBar();
   },
   quitGame(){
-    alert('i quit');
+    //alert('quit');
+    d3.select('.bars').remove();
+    colorTM.endGameAnim();
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
     d3.select('.bars')
     .append('rect')
+    .on("click", colorTM.manageBarClick)
     .attr('height', colorTM.bars.width)
     .attr('width', colorTM.bars.width)
     .attr('rx', colorTM.bars.width/2)
@@ -57,8 +63,7 @@ let colorTM = {
     .attr('y', -colorTM.bars.width/2)
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
     .attr('transform', 'translate(0, 0) rotate('+degrees+')')
-    .style('fill', colorTM.bars.bar.attr.fill);
-    d3.selectAll('rect')
+    .style('fill', colorTM.bars.bar.attr.fill)
     .attr('height', colorTM.bars.width)
     .transition()
     .attr('height', colorTM.bars.height)
@@ -72,5 +77,23 @@ let colorTM = {
         barTimer.stop();
       }
     });
+  },
+  manageBarClick() {
+    barTimer.stop();
+    colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
+    d3.select(this)
+     .attr("height", 10)
+     .transition()
+     .on('end', function() {  
+       d3.select(this).remove();  
+       colorTM.makeBar();
+      });
+  },
+  updateScore(value) {
+    colorTM.score.current = colorTM.score.current + parseInt(value);
+    d3.select('.score').text(colorTM.score.current);
+  },
+  endGameAnim() {
+    d3.select('.level').text("Game Over");
   }
 };

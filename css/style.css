@@ -3,16 +3,21 @@ html, body {
   padding: 0;
   margin: 0;
 }
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 #svg-container {
   background-color: purple;
-  height: 100%;
+  height: auto;
+  width: 100%
 }
 
 #svg-1 {
-  display: block;
-  margin: auto;
-  height: 100%;
+
 }
 #colorTitleD3ID{
 
