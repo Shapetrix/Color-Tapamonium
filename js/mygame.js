@@ -1,10 +1,9 @@
 var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
+  colorTM.makeHud();
   d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
-
-
 });
 
 let colorTM = {
@@ -39,38 +38,56 @@ let colorTM = {
   makeBoard(){
     // selects the svg-container and appends an svg tag and sets a viewBox
     colorTM.main = d3.select(colorTM.mainSelect);
-    colorTM.svg = colorTM.main.append('svg')
-    colorTM.svg.attr('viewBox',colorTM.viewBox)
+    colorTM.main.append('svg')
+    .attr('viewBox',colorTM.viewBox);
+  },
+  makeHud(){
     // draw order is from top to bottom
+    colorTM.startHud();
+    colorTM.userBtn();
+    colorTM.quitBtn();
+    colorTM.colorTapTitle();
+  },
+  startHud(){
     // startHud group
-    colorTM.svg.append('g')
+    d3.select('svg')
+    .append('g')
     .classed('startHudD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/startHud.svg')
     .attr('width',175)
     .attr('height',175)
     .attr('x',110)
-    .attr('y',250)
+    .attr('y',250);
+  },
+  userBtn(){
     // userBtn group
-    colorTM.svg.append('g')
+    d3.select('svg')
+    .append('g')
     .classed('userBtnD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/playBtn.svg')
     .attr('width',55)
     .attr('height',55)
     .attr('x',170)
-    .attr('y',365)
+    .attr('y',365);
+  },
+  quitBtn(){
     // quitBtn group
-    colorTM.svg.append('g')
+    d3.select('svg')
+    .append('g')
     .classed('quitBtnD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/quitBtn.svg')
     .attr('width',35)
     .attr('height',35)
     .attr('x',225)
-    .attr('y',368)
+    .attr('y',368);
+  },
+  colorTapTitle(){
     // colorTapTitle group
-    colorTM.svg.append('g')
+    d3.select('svg')
+    .append('g')
     .classed('colorTitleD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/colorTapTitle.svg')
@@ -79,11 +96,9 @@ let colorTM = {
     .attr('x',90)
     .attr('y',245);
   },
-  makeHud(){
-
-  },
   startGame(){
-    alert('lets Play!');
+    //alert('lets Play!');
+    colorTM.makeBar();
   },
   quitGame(){
     alert('i quit');

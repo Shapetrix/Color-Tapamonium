@@ -15,29 +15,3 @@ body{
   height: auto;
   width: 100%;
 }
-
-#colorTitleD3ID{
-
-}
-#startHudD3ID {
-
-}
-.startHud{
-  fill: white;
-  stroke: black;
-  stroke-width: 2;
-}
-#quitBtnD3ID {
-
-}
-.quitBtn{
-  fill: #e21e56;
-  stroke: #e21e56;
-}
-#userBtnD3ID {
-
-}
-.userBtn{
-  fill: #7ec434;
-  stroke: #7ec434;
-}
