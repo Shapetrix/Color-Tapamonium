@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 let colorTM = {
   mainObject: null,
   mainSelect: '.svg-container',
-  viewBox: '0 0 400 800',
+  viewBox: '0 0 400 600',
   score:{
     selectorByID: "Score",
     current: 0,
@@ -46,6 +46,9 @@ let colorTM = {
     //alert('lets Play!');
     colorTM.makeBar();
     colorTM.inOutAnim();
+    d3.select('.userBtnD3ID').remove();
+    colorTM.pauseBtn();
+    d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
   },
   makeHud(){
     // draw order is from top to bottom
@@ -90,6 +93,18 @@ let colorTM = {
     .attr('x',225)
     .attr('y',368);
   },
+  pauseBtn(){
+    // pauseBtn group
+    d3.select('svg')
+    .append('g')
+    .classed('pauseBtnD3ID',true)
+    .append('svg:image')
+    .attr('xlink:href', './img/pauseBtn.svg')
+    .attr('width',55)
+    .attr('height',55)
+    .attr('x',170)
+    .attr('y',365);
+  },
   colorTapTitle(){
     // colorTapTitle group
     d3.select('svg')
@@ -119,6 +134,9 @@ let colorTM = {
   quitGame(){
     alert('i quit');
     d3.select('barD3ID').remove();
+  },
+  pauseGame(){
+    alert('pause game!');
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);

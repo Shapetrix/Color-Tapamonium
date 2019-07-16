@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59 59">
+  <defs>
+    <style>
+      .cls-1{fill:#7ec434;}
+      .cls-2{fill:none;
+            stroke:#fff;
+            stroke-linecap:round;
+            stroke-miterlimit:10;
+            stroke-width:6px;}
+    </style>
+  </defs>
+  <title>pauseBtn</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="pauseBtn">
+      <g id="pauseBtn_grp">
+        <circle id="bgCircle" class="cls-1" cx="29.5" cy="29.5" r="29.5"/>
+        <line id="rightBar" class="cls-2" x1="39" y1="14" x2="39" y2="45"/>
+        <line id="leftBar" class="cls-2" x1="20" y1="14" x2="20" y2="45"/>
+      </g>
+    </g>
+  </g>
+</svg>

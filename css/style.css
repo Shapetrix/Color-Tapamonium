@@ -12,8 +12,39 @@ body{
 
 .svg-container {
   background-color: #333333;
-  height: auto;
-  width: 100%;
+  display: inline-block;
+	position: relative;
+	width: 100%;
+	padding-bottom: 135%;
+	vertical-align: middle;
+	overflow: hidden;
 }
-.colorTitleD3ID{
+svg{
+  display: inline-block;
+	position: absolute;
+	top: -9%;
+	left: 0;
+}
+
+@media screen and (min-width: 400px) {
+  .svg-container {
+    background-color: lightgreen;
+    padding-bottom: 178%;
+  }
+  svg{
+    display: inline-block;
+  	position: absolute;
+  	top: -2%;
+  	left: 0;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .svg-container {
+    background-color: lavender;
+    padding-bottom: 134%;
+  }
+  svg{
+    top: -13%;
+  }
 }
