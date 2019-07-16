@@ -2,6 +2,7 @@ var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
+  colorTM.outInAnim();
   d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
@@ -40,6 +41,11 @@ let colorTM = {
     colorTM.main = d3.select(colorTM.mainSelect);
     colorTM.main.append('svg')
     .attr('viewBox',colorTM.viewBox);
+  },
+  startGame(){
+    //alert('lets Play!');
+    colorTM.makeBar();
+    colorTM.inOutAnim();
   },
   makeHud(){
     // draw order is from top to bottom
@@ -96,9 +102,19 @@ let colorTM = {
     .attr('x',90)
     .attr('y',245);
   },
-  startGame(){
-    //alert('lets Play!');
-    colorTM.makeBar();
+  inOutAnim(){
+    d3.select('.colorTitleD3ID')
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+    .transition()
+    .duration(500)
+    .attr('transform', 'translate(' + 0 + ',' + -350 + ')');
+  },
+  outInAnim(){
+    d3.select('.colorTitleD3ID')
+    .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
+    .transition()
+    .duration(500)
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
   },
   quitGame(){
     alert('i quit');
