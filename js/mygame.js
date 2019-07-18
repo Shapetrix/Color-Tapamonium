@@ -80,12 +80,12 @@ let colorTM = {
   },
   manageBarClick() {
     barTimer.stop();
-    colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
+    colorTM.updateScore(colorTM.bars.pntValAttr);
     d3.select(this)
      .attr("height", 10)
      .transition()
-     .on('end', function() {  
-       d3.select(this).remove();  
+     .on('end', function() {
+       d3.select(this).remove();
        colorTM.makeBar();
       });
   },
