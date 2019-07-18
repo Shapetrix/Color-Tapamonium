@@ -1,5 +1,5 @@
 html, body {
-  height: auto;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -15,26 +15,26 @@ body{
   display: inline-block;
 	position: relative;
 	width: 100%;
-	padding-bottom: 135%;
+	padding-bottom: 178%;
 	vertical-align: middle;
 	overflow: hidden;
 }
 svg{
   display: inline-block;
 	position: absolute;
-	top: -9%;
+	top: 0%;
 	left: 0;
 }
 
 @media screen and (min-width: 400px) {
   .svg-container {
     background-color: lightgreen;
-    padding-bottom: 178%;
+    padding-bottom: 200%;
   }
   svg{
     display: inline-block;
   	position: absolute;
-  	top: -2%;
+  	top: 8%;
   	left: 0;
   }
 }

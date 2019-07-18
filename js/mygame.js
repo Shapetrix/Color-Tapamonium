@@ -16,9 +16,6 @@ let colorTM = {
     current: 0,
     maxPlayer: 0,
   },
-  hub: {
-    center:'(200,400)'
-  },
   bars: {
     width: 20,
     height: 200,
