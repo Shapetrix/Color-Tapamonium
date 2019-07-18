@@ -47,12 +47,22 @@ let colorTM = {
     colorTM.pauseBtn();
     d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
   },
+  makeScore(){
+    d3.select('svg')
+    .append('g')
+    .classed('scoreD3ID',true)
+    .append('text')
+    .text(colorTM.score.current)
+    .attr('x',160)
+    .attr('y',350);
+  },
   makeHud(){
     // draw order is from top to bottom
     colorTM.startHud();
     colorTM.userBtn();
     colorTM.quitBtn();
     colorTM.colorTapTitle();
+    colorTM.makeScore();
   },
   startHud(){
     // startHud group
@@ -113,6 +123,7 @@ let colorTM = {
     .attr('height',100)
     .attr('x',90)
     .attr('y',245);
+    colorTM.outInAnim();
   },
   inOutAnim(){
     d3.select('.colorTitleD3ID')
@@ -129,11 +140,27 @@ let colorTM = {
     .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
   },
   quitGame(){
-    alert('i quit');
-    d3.select('barD3ID').remove();
+    //alert('i quit');
+    d3.select('.barD3ID').remove();
+    d3.select('.startHudD3ID').remove();
+    d3.select('.colorTitleD3ID').remove();
+    d3.select('.pauseBtnD3ID').remove();
+    d3.select('.userBtnD3ID').remove();
+    d3.select('.quitBtnD3ID').remove();
+    colorTM.startHud();
+    colorTM.userBtn();
+    colorTM.quitBtn();
+    colorTM.colorTapTitle();
+    d3.select('.userBtnD3ID').on("click", colorTM.startGame);
+    d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
   },
   pauseGame(){
     alert('pause game!');
+    barTimer.stop();
+  },
+  gameOver(){
+    alert('game over!');
+    colorTM.gameOverAnim()
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
@@ -141,28 +168,48 @@ let colorTM = {
     .append('g')
     .classed('barD3ID',true)
     .append('rect')
-    .attr('height', 10)
+    .on('click', colorTM.barClick)
+    .attr('height', colorTM.bars.width)
     .attr('width', colorTM.bars.width)
     .attr('rx', colorTM.bars.width/2)
     .attr('ry', colorTM.bars.width/2)
     .attr('x', -colorTM.bars.width/2)
     .attr('y', -colorTM.bars.width/2)
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
-    .attr('transform', 'translate(' + 200 + ',' + 337 + ')')
+    .attr('transform', 'translate(' + 195 + ',' + 337 + ') rotate('+degrees+')')
     .style('fill', colorTM.bars.bar.attr.fill);
     d3.selectAll('rect')
-    .attr('height', 10)
+    .attr('height', colorTM.bars.width)
     .transition()
     .attr('height', colorTM.bars.height)
     .duration(colorTM.bars.bar.durationTime)
     .transition()
-    .attr('height', 10)
+    .attr('height', colorTM.bars.width)
     .delay(colorTM.bars.bar.delayTime).duration(colorTM.bars.bar.durationTime);
     barTimer = d3.timer(function(duration){
       if (duration > colorTM.bars.bar.durationTime){
-        colorTM.quitGame();
+        colorTM.gameOver();
         barTimer.stop();
       }
     });
+  },
+  barClick(){
+    barTimer.stop();
+    colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
+    d3.select(this)
+    .attr('height',10)
+    .transition()
+    .on('end',function(){
+      d3.select(this).remove();
+      d3.select('.barD3ID').remove();
+      colorTM.makeBar();
+    });
+  },
+  updateScore(value){
+    colorTM.score.current = colorTM.score.current + parseInt(value);
+    d3.select('.scoreD3ID').text(colorTM.score.current);
+  },
+  gameOverAnim(){
+
   }
 };

@@ -9,7 +9,12 @@ body{
   justify-content: center;
   align-items: center;
 }
-
+.scoreD3ID{
+  background-color: blue;
+  color:green;
+  font-size: 150px;
+  font-family: fantasy;
+}
 .svg-container {
   background-color: #333333;
   display: inline-block;
