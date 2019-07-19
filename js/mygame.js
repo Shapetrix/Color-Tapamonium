@@ -24,8 +24,8 @@ let colorTM = {
     pntValAttr: "pointValue",
     barObjectID: "rect.bar",
     bar: {
-      durationTime:2000,
-      delayTime:1000,
+      durationTime:500,
+      delayTime:250,
       degrees: 360,
       pointValue: 5,
       attr:{
@@ -46,6 +46,17 @@ let colorTM = {
     d3.select('.userBtnD3ID').remove();
     colorTM.pauseBtn();
     d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
+    colorTM.makeScore();
+    colorTM.makeScoreText();
+  },
+  makeScoreText(){
+    d3.select('svg')
+    .append('g')
+    .classed('scoreTextD3ID',true)
+    .append('text')
+    .text('Score')
+    .attr('x',160)
+    .attr('y',300);
   },
   makeScore(){
     d3.select('svg')
@@ -54,7 +65,7 @@ let colorTM = {
     .append('text')
     .text(colorTM.score.current)
     .attr('x',160)
-    .attr('y',350);
+    .attr('y',325);
   },
   makeHud(){
     // draw order is from top to bottom
@@ -62,7 +73,6 @@ let colorTM = {
     colorTM.userBtn();
     colorTM.quitBtn();
     colorTM.colorTapTitle();
-    colorTM.makeScore();
   },
   startHud(){
     // startHud group
@@ -140,13 +150,14 @@ let colorTM = {
     .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
   },
   quitGame(){
-    //alert('i quit');
     d3.select('.barD3ID').remove();
     d3.select('.startHudD3ID').remove();
     d3.select('.colorTitleD3ID').remove();
     d3.select('.pauseBtnD3ID').remove();
     d3.select('.userBtnD3ID').remove();
     d3.select('.quitBtnD3ID').remove();
+    d3.select('.scoreD3ID').remove();
+    colorTM.score.current = 0;
     colorTM.startHud();
     colorTM.userBtn();
     colorTM.quitBtn();
@@ -188,9 +199,11 @@ let colorTM = {
     .delay(colorTM.bars.bar.delayTime).duration(colorTM.bars.bar.durationTime);
     barTimer = d3.timer(function(duration){
       if (duration > colorTM.bars.bar.durationTime){
-        colorTM.gameOver();
+        console.log('gameover');
+        //colorTM.gameOver();
         barTimer.stop();
       }
+      console.log(barTimer);
     });
   },
   barClick(){
@@ -203,6 +216,8 @@ let colorTM = {
       d3.select(this).remove();
       d3.select('.barD3ID').remove();
       colorTM.makeBar();
+      d3.select('.scoreD3ID').remove();
+      colorTM.makeScore();
     });
   },
   updateScore(value){

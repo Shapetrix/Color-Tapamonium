@@ -10,10 +10,13 @@ body{
   align-items: center;
 }
 .scoreD3ID{
-  background-color: blue;
-  color:green;
-  font-size: 150px;
+  text-align: center;
+  font-size: 25px;
   font-family: fantasy;
+}
+.scoreTextD3ID{
+  font-size: 25px;
+  font-family: sans-serif;
 }
 .svg-container {
   background-color: #333333;
