@@ -56,3 +56,13 @@ svg{
     top: -13%;
   }
 }
+.userBtnD3ID { animation: pulse .5s ease infinite alternate; }
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+   opacity: 1;
+  }
+}
