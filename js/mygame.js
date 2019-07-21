@@ -2,7 +2,7 @@ var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
-  colorTM.outInAnim();
+  //colorTM.outInAnim();
   d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
@@ -133,22 +133,22 @@ let colorTM = {
     .attr('height',100)
     .attr('x',90)
     .attr('y',245);
-    colorTM.outInAnim();
+    //colorTM.outInAnim();
   },
-  inOutAnim(){
+  /*inOutAnim(){
     d3.select('.colorTitleD3ID')
     .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
     .transition()
     .duration(500)
     .attr('transform', 'translate(' + 0 + ',' + -350 + ')');
-  },
-  outInAnim(){
+  }//,
+  //outInAnim(){
     d3.select('.colorTitleD3ID')
     .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
     .transition()
     .duration(500)
     .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
-  },
+  }//,*/
   quitGame(){
     d3.select('.barD3ID').remove();
     d3.select('.startHudD3ID').remove();

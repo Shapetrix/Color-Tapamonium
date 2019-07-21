@@ -10,13 +10,14 @@ body{
   align-items: center;
 }
 .scoreD3ID{
-  text-align: center;
-  font-size: 25px;
-  font-family: fantasy;
+  font-size: 18px;
+  font-family: "impact", impact, serif;
 }
 .scoreTextD3ID{
-  font-size: 25px;
-  font-family: sans-serif;
+  font-size: 30px;
+  font-family: "impact", impact, serif;
+}
+.startHudD3ID{
 }
 .svg-container {
   background-color: #333333;
@@ -64,5 +65,16 @@ svg{
 
   100% {
    opacity: 1;
+  }
+}
+
+.colorTitleD3ID { animation: OutToIn .5s ease; }
+@keyframes OutToIn {
+  0% {
+    transform: translateY(-400px);
+  }
+
+  100% {
+   transform: translateY(0px);
   }
 }
