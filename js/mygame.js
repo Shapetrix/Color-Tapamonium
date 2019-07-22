@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
   //colorTM.outInAnim();
-  d3.select('.userBtnD3ID').on("click", colorTM.startGame);
+  d3.select('.userBtnD3ID').on("click",colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
 
@@ -40,14 +40,19 @@ let colorTM = {
     .attr('viewBox',colorTM.viewBox);
   },
   startGame(){
-    //alert('lets Play!');
     colorTM.makeBar();
-    colorTM.inOutAnim();
     d3.select('.userBtnD3ID').remove();
     colorTM.pauseBtn();
     d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
     colorTM.makeScore();
     colorTM.makeScoreText();
+    colorTM.addAnimationClass();
+  },
+  addAnimationClass(){
+    // alert('addAnimationClass');
+    d3.select('.colorTitleD3ID')
+    .classed('colorTitleD3ID', false)
+    .classed('colorTitleD3IDOut',true);
   },
   makeScoreText(){
     d3.select('svg')
@@ -210,7 +215,7 @@ let colorTM = {
     barTimer.stop();
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
     d3.select(this)
-    .attr('height',10)
+    .attr('height',colorTM.bars.width)
     .transition()
     .on('end',function(){
       d3.select(this).remove();

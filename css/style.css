@@ -57,6 +57,8 @@ svg{
     top: -13%;
   }
 }
+
+/* animations */
 .userBtnD3ID { animation: pulse .5s ease infinite alternate; }
 @keyframes pulse {
   0% {
@@ -67,7 +69,6 @@ svg{
    opacity: 1;
   }
 }
-
 .colorTitleD3ID { animation: OutToIn .5s ease; }
 @keyframes OutToIn {
   0% {
@@ -76,5 +77,33 @@ svg{
 
   100% {
    transform: translateY(0px);
+  }
+}
+.colorTitleD3IDOut {
+  animation: inToOut .5s;
+  animation-fill-mode:forwards;
+  animation-iteration-count: 1;
+ }
+@keyframes inToOut {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+   transform: translateY(-400px);
+  }
+}
+.scoreTextD3ID, .scoreD3ID {
+  animation: fadeIn 1s;
+  animation-fill-mode:forwards;
+  animation-iteration-count: 1;
+ }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+   opacity: 1;
   }
 }
