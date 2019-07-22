@@ -2,8 +2,7 @@ var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
-  //colorTM.outInAnim();
-  d3.select('.userBtnD3ID').on("click",colorTM.startGame);
+  d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
 
@@ -49,7 +48,6 @@ let colorTM = {
     colorTM.addAnimationClass();
   },
   addAnimationClass(){
-    // alert('addAnimationClass');
     d3.select('.colorTitleD3ID')
     .classed('colorTitleD3ID', false)
     .classed('colorTitleD3IDOut',true);
@@ -138,22 +136,7 @@ let colorTM = {
     .attr('height',100)
     .attr('x',90)
     .attr('y',245);
-    //colorTM.outInAnim();
   },
-  /*inOutAnim(){
-    d3.select('.colorTitleD3ID')
-    .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
-    .transition()
-    .duration(500)
-    .attr('transform', 'translate(' + 0 + ',' + -350 + ')');
-  }//,
-  //outInAnim(){
-    d3.select('.colorTitleD3ID')
-    .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
-    .transition()
-    .duration(500)
-    .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
-  }//,*/
   quitGame(){
     d3.select('.barD3ID').remove();
     d3.select('.startHudD3ID').remove();
@@ -176,7 +159,7 @@ let colorTM = {
   },
   gameOver(){
     alert('game over!');
-    colorTM.gameOverAnim()
+    colorTM.gameOverAnim();
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
@@ -201,11 +184,11 @@ let colorTM = {
     .duration(colorTM.bars.bar.durationTime)
     .transition()
     .attr('height', colorTM.bars.width)
-    .delay(colorTM.bars.bar.delayTime).duration(colorTM.bars.bar.durationTime);
+    .delay(colorTM.bars.bar.delayTime)
+    .duration(colorTM.bars.bar.durationTime);
     barTimer = d3.timer(function(duration){
       if (duration > colorTM.bars.bar.durationTime){
         console.log('gameover');
-        //colorTM.gameOver();
         barTimer.stop();
       }
       console.log(barTimer);
