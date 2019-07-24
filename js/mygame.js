@@ -41,17 +41,20 @@ let colorTM = {
   startGame(){
     colorTM.makeBarClassed();
     colorTM.makeBar();
-    d3.select('.userBtnD3ID').remove();
-    colorTM.pauseBtn();
-    d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
+    colorTM.userBtn();
     colorTM.makeScore();
     colorTM.makeScoreText();
     colorTM.addAnimationClass();
+    colorTM.addBarD3IDAnimClass();
   },
   addAnimationClass(){
     d3.select('.colorTitleD3ID')
     .classed('colorTitleD3ID', false)
     .classed('colorTitleD3IDOut',true);
+  },
+  addBarD3IDAnimClass(){
+    d3.select('.barD3ID')
+    .classed('barD3IDAnim',true);
   },
   makeScoreText(){
     d3.select('svg')
@@ -144,7 +147,7 @@ let colorTM = {
   },
   pauseGame(){
     alert('pause game!');
-    barTimer.stop();
+
   },
   gameOver(){
     alert('game over!');
@@ -168,26 +171,21 @@ let colorTM = {
     .attr('y', -colorTM.bars.width/2)
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
     .attr('transform', 'translate(' + 195 + ',' + 337 + ') rotate('+degrees+')')
-    .style('fill', colorTM.bars.bar.attr.fill);
-    d3.selectAll('rect')
-    .attr('height', colorTM.bars.width)
-    .transition()
-    .attr('height', colorTM.bars.height)
-    .duration(colorTM.bars.bar.durationTime)
-    .transition()
-    .attr('height', colorTM.bars.width)
-    .delay(colorTM.bars.bar.delayTime)
-    .duration(colorTM.bars.bar.durationTime);
-    barTimer = d3.timer(function(duration){
-      if (duration > colorTM.bars.bar.durationTime){
-        //console.log('gameover');
-        barTimer.stop();
-      }
-      console.log(barTimer);
+    .style('fill', colorTM.bars.bar.attr.fill)
+    // d3.selectAll('rect')
+    // .attr('height', colorTM.bars.width)
+    // .transition()
+    // .attr('height', colorTM.bars.height)
+    // .duration(colorTM.bars.bar.durationTime)
+    // .transition()
+    // .attr('height', colorTM.bars.width)
+    // .delay(colorTM.bars.bar.delayTime)
+    // .duration(colorTM.bars.bar.durationTime)
+    .on('end', function(){
+      colorTM.gameOver();
     });
   },
   barClick(){
-    barTimer.stop();
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
     d3.select(this)
     .attr('height',colorTM.bars.width)
