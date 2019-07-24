@@ -16,15 +16,15 @@ let colorTM = {
     maxPlayer: 0,
   },
   bars: {
-    width: 20,
+    width: 30,
     height: 200,
     count: 1,
     timeout: 10000,
     pntValAttr: "pointValue",
     barObjectID: "rect.bar",
     bar: {
-      durationTime:500,
-      delayTime:250,
+      durationTime:800,
+      delayTime:350,
       degrees: 360,
       pointValue: 5,
       attr:{
@@ -39,6 +39,7 @@ let colorTM = {
     .attr('viewBox',colorTM.viewBox);
   },
   startGame(){
+    colorTM.makeBarClassed();
     colorTM.makeBar();
     d3.select('.userBtnD3ID').remove();
     colorTM.pauseBtn();
@@ -69,13 +70,6 @@ let colorTM = {
     .text(colorTM.score.current)
     .attr('x',160)
     .attr('y',325);
-  },
-  makeHud(){
-    // draw order is from top to bottom
-    colorTM.startHud();
-    colorTM.userBtn();
-    colorTM.quitBtn();
-    colorTM.colorTapTitle();
   },
   startHud(){
     // startHud group
@@ -138,14 +132,9 @@ let colorTM = {
     .attr('y',245);
   },
   quitGame(){
-    d3.select('.barD3ID').remove();
-    d3.select('.startHudD3ID').remove();
-    d3.select('.colorTitleD3ID').remove();
-    d3.select('.pauseBtnD3ID').remove();
-    d3.select('.userBtnD3ID').remove();
-    d3.select('.quitBtnD3ID').remove();
-    d3.select('.scoreD3ID').remove();
+    d3.selectAll('g').remove();
     colorTM.score.current = 0;
+    colorTM.makeBarClassed();
     colorTM.startHud();
     colorTM.userBtn();
     colorTM.quitBtn();
@@ -161,11 +150,14 @@ let colorTM = {
     alert('game over!');
     colorTM.gameOverAnim();
   },
-  makeBar(){
-    var degrees = Math.floor(Math.random() * 360);
+  makeBarClassed(){
     d3.select('svg')
     .append('g')
-    .classed('barD3ID',true)
+    .classed('barD3ID',true);
+  },
+  makeBar(){
+    var degrees = Math.floor(Math.random() * 360);
+    d3.select('.barD3ID')
     .append('rect')
     .on('click', colorTM.barClick)
     .attr('height', colorTM.bars.width)
@@ -188,7 +180,7 @@ let colorTM = {
     .duration(colorTM.bars.bar.durationTime);
     barTimer = d3.timer(function(duration){
       if (duration > colorTM.bars.bar.durationTime){
-        console.log('gameover');
+        //console.log('gameover');
         barTimer.stop();
       }
       console.log(barTimer);
@@ -202,7 +194,6 @@ let colorTM = {
     .transition()
     .on('end',function(){
       d3.select(this).remove();
-      d3.select('.barD3ID').remove();
       colorTM.makeBar();
       d3.select('.scoreD3ID').remove();
       colorTM.makeScore();
@@ -211,6 +202,14 @@ let colorTM = {
   updateScore(value){
     colorTM.score.current = colorTM.score.current + parseInt(value);
     d3.select('.scoreD3ID').text(colorTM.score.current);
+  },
+  makeHud(){
+    // draw order is from top to bottom
+    colorTM.makeBarClassed();
+    colorTM.startHud();
+    colorTM.userBtn();
+    colorTM.quitBtn();
+    colorTM.colorTapTitle();
   },
   gameOverAnim(){
 
