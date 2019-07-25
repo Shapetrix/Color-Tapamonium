@@ -17,8 +17,6 @@ body{
   font-size: 30px;
   font-family: "impact", impact, serif;
 }
-.startHudD3ID{
-}
 .svg-container {
   background-color: #333333;
   display: inline-block;
@@ -34,7 +32,7 @@ svg{
 	top: 0%;
 	left: 0;
 }
-
+/* Screen sizes */
 @media screen and (min-width: 400px) {
   .svg-container {
     background-color: lightgreen;
@@ -47,7 +45,6 @@ svg{
   	left: 0;
   }
 }
-
 @media screen and (min-width: 800px) {
   .svg-container {
     background-color: lavender;
@@ -57,9 +54,8 @@ svg{
     top: -13%;
   }
 }
-
 /* animations */
-.userBtnD3ID { animation: pulse .5s ease infinite alternate; }
+.pulseAnim { animation: pulse .5s ease infinite alternate; }
 @keyframes pulse {
   0% {
     opacity: 0.5;

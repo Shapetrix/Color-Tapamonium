@@ -2,6 +2,7 @@ var d3;
 document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
+  colorTM.addClassToUserBtn();
   d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
@@ -37,15 +38,6 @@ let colorTM = {
     colorTM.main = d3.select(colorTM.mainSelect);
     colorTM.main.append('svg')
     .attr('viewBox',colorTM.viewBox);
-  },
-  startGame(){
-    colorTM.makeBar();
-    d3.select('.userBtnD3ID').remove();
-    colorTM.pauseBtn();
-    d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
-    colorTM.makeScore();
-    colorTM.makeScoreText();
-    colorTM.inOutAnim();
   },
   makeScoreText(){
     d3.select('svg')
@@ -89,19 +81,20 @@ let colorTM = {
     .attr('x',170)
     .attr('y',365);
   },
-  inOutAnim(){
-  d3.select('.colorTitleD3ID')
-  .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
-  .transition()
-  .duration(500)
-  .attr('transform', 'translate(' + 0 + ',' + -350 + ')');
+  addClassToUserBtn(){
+    d3.select('.userBtnD3ID')
+    .classed('pulseAnim',true);
   },
-  outInAnim(){
-  d3.select('.colorTitleD3ID')
-  .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
-  .transition()
-  .duration(500)
-  .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
+  removeClassFromUserBtn(){
+    d3.select('.userBtnD3ID')
+    .classed('pulseAnim',false);
+  },
+  addOpacityToUserBtn(){
+    d3.select('.userBtnD3ID')
+    .attr('opacity', 0.5);
+  },
+  removeOnClickFromUserBtn(){
+    d3.select('.userBtnD3ID').on("click", null);
   },
   quitBtn(){
     // quitBtn group
@@ -114,18 +107,6 @@ let colorTM = {
     .attr('height',35)
     .attr('x',225)
     .attr('y',368);
-  },
-  pauseBtn(){
-    // pauseBtn group
-    d3.select('svg')
-    .append('g')
-    .classed('pauseBtnD3ID',true)
-    .append('svg:image')
-    .attr('xlink:href', './img/pauseBtn.svg')
-    .attr('width',55)
-    .attr('height',55)
-    .attr('x',170)
-    .attr('y',365);
   },
   colorTapTitle(){
     // colorTapTitle group
@@ -140,6 +121,29 @@ let colorTM = {
     .attr('y',245);
     colorTM.outInAnim();
   },
+  inOutAnim(){
+    d3.select('.colorTitleD3ID')
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+    .transition()
+    .duration(500)
+    .attr('transform', 'translate(' + 0 + ',' + -350 + ')');
+  },
+  outInAnim(){
+  d3.select('.colorTitleD3ID')
+    .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
+    .transition()
+    .duration(500)
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
+  },
+  startGame(){
+    colorTM.makeBar();
+    colorTM.makeScore();
+    colorTM.makeScoreText();
+    colorTM.inOutAnim();
+    colorTM.removeClassFromUserBtn();
+    colorTM.addOpacityToUserBtn();
+    colorTM.removeOnClickFromUserBtn();
+  },
   quitGame(){
     d3.selectAll('g').remove();
     colorTM.score.current = 0;
@@ -148,15 +152,11 @@ let colorTM = {
     colorTM.userBtn();
     colorTM.quitBtn();
     colorTM.colorTapTitle();
+    colorTM.addClassToUserBtn();
     d3.select('.userBtnD3ID').on("click", colorTM.startGame);
     d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
   },
-  pauseGame(){
-    alert('pause game!');
-    barTimer.stop();
-  },
   gameOver(){
-    alert('game over!');
     colorTM.gameOverAnim();
   },
   makeBarClassed(){
@@ -186,17 +186,12 @@ let colorTM = {
     .transition()
     .attr('height', colorTM.bars.width)
     .delay(colorTM.bars.bar.delayTime)
-    .duration(colorTM.bars.bar.durationTime);
-    barTimer = d3.timer(function(duration){
-      if (duration > colorTM.bars.bar.durationTime){
-        //console.log('gameover');
-        barTimer.stop();
-      }
-      console.log(barTimer);
+    .duration(colorTM.bars.bar.durationTime)
+    .on('end',function(){
+      colorTM.gameOver();
     });
   },
   barClick(){
-    barTimer.stop();
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
     d3.select(this)
     .attr('height',colorTM.bars.width)
@@ -221,6 +216,6 @@ let colorTM = {
     colorTM.colorTapTitle();
   },
   gameOverAnim(){
-
+    alert('Game Over Screen');
   }
 };
