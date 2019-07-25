@@ -39,19 +39,13 @@ let colorTM = {
     .attr('viewBox',colorTM.viewBox);
   },
   startGame(){
-    colorTM.makeBarClassed();
     colorTM.makeBar();
     d3.select('.userBtnD3ID').remove();
     colorTM.pauseBtn();
     d3.select('.pauseBtnD3ID').on("click", colorTM.pauseGame);
     colorTM.makeScore();
     colorTM.makeScoreText();
-    colorTM.addAnimationClass();
-  },
-  addAnimationClass(){
-    d3.select('.colorTitleD3ID')
-    .classed('colorTitleD3ID', false)
-    .classed('colorTitleD3IDOut',true);
+    colorTM.inOutAnim();
   },
   makeScoreText(){
     d3.select('svg')
@@ -95,6 +89,20 @@ let colorTM = {
     .attr('x',170)
     .attr('y',365);
   },
+  inOutAnim(){
+  d3.select('.colorTitleD3ID')
+  .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+  .transition()
+  .duration(500)
+  .attr('transform', 'translate(' + 0 + ',' + -350 + ')');
+  },
+  outInAnim(){
+  d3.select('.colorTitleD3ID')
+  .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
+  .transition()
+  .duration(500)
+  .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
+  },
   quitBtn(){
     // quitBtn group
     d3.select('svg')
@@ -130,6 +138,7 @@ let colorTM = {
     .attr('height',100)
     .attr('x',90)
     .attr('y',245);
+    colorTM.outInAnim();
   },
   quitGame(){
     d3.selectAll('g').remove();
