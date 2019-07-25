@@ -10,10 +10,14 @@ body{
   align-items: center;
 }
 .scoreD3ID{
-  background-color: blue;
-  color:green;
-  font-size: 150px;
-  font-family: fantasy;
+  font-size: 18px;
+  font-family: "impact", impact, serif;
+}
+.scoreTextD3ID{
+  font-size: 30px;
+  font-family: "impact", impact, serif;
+}
+.startHudD3ID{
 }
 .svg-container {
   background-color: #333333;
@@ -65,30 +69,6 @@ svg{
    opacity: 1;
   }
 }
-.colorTitleD3ID { animation: OutToIn .5s ease; }
-@keyframes OutToIn {
-  0% {
-    transform: translateY(-400px);
-  }
-
-  100% {
-   transform: translateY(0px);
-  }
-}
-.colorTitleD3IDOut {
-  animation: inToOut .5s;
-  animation-fill-mode:forwards;
-  animation-iteration-count: 1;
- }
-@keyframes inToOut {
-  0% {
-    transform: translateY(0px);
-  }
-
-  100% {
-   transform: translateY(-400px);
-  }
-}
 .scoreTextD3ID, .scoreD3ID {
   animation: fadeIn 1s;
   animation-fill-mode:forwards;
@@ -100,49 +80,6 @@ svg{
   }
 
   100% {
-    opacity: 1;
-  }
-}
-.barD3IDAnimOut{
-    width: 30px;
-    height:200px;
-    border-radius: 60px;
-    animation-name: moveOut;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-out;
-    animation-delay: .5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: backwards;
-    animation-play-state: running
-}
-@keyframes moveOut {
-  0% {
-    height: 30px;
-  }
-  50% {
-    animation-delay: .5s;
-  }
-  100% {
-    height: 200px;
-  }
-}
-.barD3IDAnimIn{
-    width: 30px;
-    height:200px;
-    border-radius: 60px;
-    animation-name: moveIn;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in;
-    animation-delay: .5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: running
-}
-@keyframes moveIn {
-  0% {
-    height: 200px;
-  }
-  100% {
-    height: 30px;
+   opacity: 1;
   }
 }
