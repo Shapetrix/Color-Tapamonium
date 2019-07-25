@@ -39,9 +39,7 @@ let colorTM = {
     .attr('viewBox',colorTM.viewBox);
   },
   startGame(){
-    colorTM.makeBarClassed();
     colorTM.makeBar();
-    colorTM.userBtn();
     colorTM.makeScore();
     colorTM.makeScoreText();
     colorTM.addAnimationClass();
@@ -53,7 +51,7 @@ let colorTM = {
     .classed('colorTitleD3IDOut',true);
   },
   addBarD3IDAnimClass(){
-    d3.select('.barD3ID')
+    d3.select('rect')
     .classed('barD3IDAnim',true);
   },
   makeScoreText(){
@@ -163,8 +161,6 @@ let colorTM = {
     d3.select('.barD3ID')
     .append('rect')
     .on('click', colorTM.barClick)
-    .attr('height', colorTM.bars.width)
-    .attr('width', colorTM.bars.width)
     .attr('rx', colorTM.bars.width/2)
     .attr('ry', colorTM.bars.width/2)
     .attr('x', -colorTM.bars.width/2)
@@ -172,30 +168,14 @@ let colorTM = {
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
     .attr('transform', 'translate(' + 195 + ',' + 337 + ') rotate('+degrees+')')
     .style('fill', colorTM.bars.bar.attr.fill)
-    // d3.selectAll('rect')
-    // .attr('height', colorTM.bars.width)
-    // .transition()
-    // .attr('height', colorTM.bars.height)
-    // .duration(colorTM.bars.bar.durationTime)
-    // .transition()
-    // .attr('height', colorTM.bars.width)
-    // .delay(colorTM.bars.bar.delayTime)
-    // .duration(colorTM.bars.bar.durationTime)
     .on('end', function(){
       colorTM.gameOver();
     });
   },
   barClick(){
-    colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
-    d3.select(this)
-    .attr('height',colorTM.bars.width)
-    .transition()
-    .on('end',function(){
-      d3.select(this).remove();
-      colorTM.makeBar();
-      d3.select('.scoreD3ID').remove();
-      colorTM.makeScore();
-    });
+    colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr))
+    d3.select('.scoreD3ID').remove();
+    colorTM.makeScore();
   },
   updateScore(value){
     colorTM.score.current = colorTM.score.current + parseInt(value);
