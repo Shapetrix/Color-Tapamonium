@@ -10,14 +10,10 @@ body{
   align-items: center;
 }
 .scoreD3ID{
-  font-size: 18px;
-  font-family: "impact", impact, serif;
-}
-.scoreTextD3ID{
-  font-size: 30px;
-  font-family: "impact", impact, serif;
-}
-.startHudD3ID{
+  background-color: blue;
+  color:green;
+  font-size: 150px;
+  font-family: fantasy;
 }
 .svg-container {
   background-color: #333333;
