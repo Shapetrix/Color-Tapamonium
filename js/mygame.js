@@ -43,16 +43,20 @@ let colorTM = {
     colorTM.makeScore();
     colorTM.makeScoreText();
     colorTM.addAnimationClass();
-    colorTM.addBarD3IDAnimClass();
+    colorTM.addBarD3IDClassAnimOut();
   },
   addAnimationClass(){
     d3.select('.colorTitleD3ID')
     .classed('colorTitleD3ID', false)
     .classed('colorTitleD3IDOut',true);
   },
-  addBarD3IDAnimClass(){
+  addBarD3IDClassAnimOut(){
     d3.select('rect')
-    .classed('barD3IDAnim',true);
+    .classed('barD3IDAnimOut',true);
+  },
+  addBarD3IDClassAnimIn(){
+    d3.select('rect')
+    .classed('barD3IDAnimIn',true);
   },
   makeScoreText(){
     d3.select('svg')
@@ -176,6 +180,11 @@ let colorTM = {
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr))
     d3.select('.scoreD3ID').remove();
     colorTM.makeScore();
+    d3.select('rect')
+    .on('click',null)
+    .classed('barD3IDAnimOut',false);
+    d3.select('rect').remove();
+    colorTM.addBarD3IDClassAnimIn();
   },
   updateScore(value){
     colorTM.score.current = colorTM.score.current + parseInt(value);
