@@ -166,8 +166,6 @@ let colorTM = {
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
-    var int = Math.random(5)+1;
-
     colors = [
        '#7f59ab',// purple
        '#7ec434', // green
@@ -176,6 +174,8 @@ let colorTM = {
        '#e21e56', // red
        '#f3bb34', // yellow
      ];
+    var barColors = colors[Math.floor(Math.random() * colors.length)];
+
     d3.select('.barD3ID')
     .append('rect')
     .on('click', colorTM.barClick)
@@ -189,8 +189,8 @@ let colorTM = {
     .attr('transform', 'translate(' + 195 + ',' + 337 + ') rotate('+degrees+')')
     .style('fill', function(d,int) {
       //debugger;
-      console.log(colors[int]);
-      return colors[int];
+      console.log(barColors);
+      return barColors;
     });
     d3.selectAll('rect')
     .attr('height', colorTM.bars.width)
