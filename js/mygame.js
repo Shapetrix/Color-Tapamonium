@@ -279,14 +279,15 @@ let colorTM = {
   },
   barClick(){
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
-    d3.select(this)
-    .attr('height',colorTM.bars.width)
+    d3.selectAll('rect')
     .transition()
+    .attr('height', colorTM.bars.width)
+    .duration(colorTM.bars.bar.durationTime)
     .on('end',function(){
-      d3.select(this).remove();
-      colorTM.makeBar();
       d3.select('.scoreD3ID').remove();
       colorTM.makeScore();
+      d3.select(this).remove();
+      colorTM.makeBar();
     });
   },
   updateScore(value){
