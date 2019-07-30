@@ -35,7 +35,6 @@ svg{
 /* Screen sizes */
 @media screen and (min-width: 400px) {
   .svg-container {
-    background-color: lightgreen;
     padding-bottom: 200%;
   }
   svg{
@@ -47,12 +46,16 @@ svg{
 }
 @media screen and (min-width: 800px) {
   .svg-container {
-    background-color: lavender;
     padding-bottom: 134%;
   }
   svg{
     top: -13%;
   }
+}
+.shadow {
+  -webkit-filter: drop-shadow( 1px 10px 1px rgba(0, 0, 0, .7));
+  filter: drop-shadow( 1px 10px 1px rgba(0, 0, 0, .7));
+  /* Similar syntax to box-shadow */
 }
 /* animations */
 .pulseAnim { animation: pulse .5s ease infinite alternate; }

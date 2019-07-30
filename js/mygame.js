@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
   colorTM.addClassToUserBtn();
+  colorTM.bars.count = 0;
   d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
@@ -37,7 +38,8 @@ let colorTM = {
     // selects the svg-container and appends an svg tag and sets a viewBox
     colorTM.main = d3.select(colorTM.mainSelect);
     colorTM.main.append('svg')
-    .attr('viewBox',colorTM.viewBox);
+    .attr('viewBox',colorTM.viewBox)
+    .classed('shadow',true);
   },
   makeScoreText(){
     d3.select('svg')
@@ -226,6 +228,9 @@ let colorTM = {
     colorTM.makeBar();
     colorTM.makeScore();
     colorTM.gameOverInOutAnim();
+    colorTM.removeOnClickFromUserBtn();
+    colorTM.removeOnClickFromQuitBtn();
+    colorTM.addOpacityToQuitBtn();
     colorTM.removeClassFromUserBtn();
     colorTM.addOpacityToUserBtn();
     console.log('restartGame');
@@ -234,6 +239,14 @@ let colorTM = {
     d3.select('svg')
     .append('g')
     .classed('barD3ID',true);
+  },
+  makeNewBars(){
+    var barClickCount = colorTM.bars.count;
+      if(barClickCount == 5){
+        colorTM.makeBar();
+      }else{
+        colorTM.makeBar();
+      };
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
@@ -279,6 +292,8 @@ let colorTM = {
   },
   barClick(){
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
+    colorTM.bars.count++;
+    console.log(colorTM.bars.count);
     d3.selectAll('rect')
     .transition()
     .attr('height', colorTM.bars.width)
@@ -287,7 +302,7 @@ let colorTM = {
       d3.select('.scoreD3ID').remove();
       colorTM.makeScore();
       d3.select(this).remove();
-      colorTM.makeBar();
+      colorTM.makeNewBars();
     });
   },
   updateScore(value){
