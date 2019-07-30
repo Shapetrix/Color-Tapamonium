@@ -45,8 +45,8 @@ let colorTM = {
     .classed('scoreTextD3ID',true)
     .append('text')
     .text('Score')
-    .attr('x',160)
-    .attr('y',300);
+    .attr('x',170)
+    .attr('y',340);
   },
   makeScore(){
     d3.select('svg')
@@ -54,8 +54,8 @@ let colorTM = {
     .classed('scoreD3ID',true)
     .append('text')
     .text(colorTM.score.current)
-    .attr('x',160)
-    .attr('y',325);
+    .attr('x',170)
+    .attr('y',355);
   },
   startHud(){
     // startHud group
@@ -76,10 +76,10 @@ let colorTM = {
     .classed('userBtnD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/playBtn.svg')
-    .attr('width',55)
-    .attr('height',55)
-    .attr('x',170)
-    .attr('y',365);
+    .attr('width',50)
+    .attr('height',50)
+    .attr('x',175)
+    .attr('y',370);
   },
   addClassToUserBtn(){
     d3.select('.userBtnD3ID')
@@ -93,6 +93,10 @@ let colorTM = {
     d3.select('.userBtnD3ID')
     .attr('opacity', 0.5);
   },
+  removeOpacityToUserBtn(){
+    d3.select('.userBtnD3ID')
+    .attr('opacity', null);
+  },
   removeOnClickFromUserBtn(){
     d3.select('.userBtnD3ID').on("click", null);
   },
@@ -103,10 +107,21 @@ let colorTM = {
     .classed('quitBtnD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/quitBtn.svg')
-    .attr('width',35)
-    .attr('height',35)
-    .attr('x',225)
-    .attr('y',368);
+    .attr('width',30)
+    .attr('height',30)
+    .attr('x',226)
+    .attr('y',375);
+  },
+  addOpacityToQuitBtn(){
+    d3.select('.quitBtnD3ID')
+    .attr('opacity', 0.5);
+  },
+  removeOpacityToQuitBtn(){
+    d3.select('.quitBtnD3ID')
+    .attr('opacity', null);
+  },
+  removeOnClickFromQuitBtn(){
+    d3.select('.quitBtnD3ID').on("click", null);
   },
   colorTapTitle(){
     // colorTapTitle group
@@ -115,11 +130,10 @@ let colorTM = {
     .classed('colorTitleD3ID',true)
     .append('svg:image')
     .attr('xlink:href', './img/colorTapTitle.svg')
-    .attr('width',200)
-    .attr('height',100)
-    .attr('x',90)
-    .attr('y',245);
-    colorTM.outInAnim();
+    .attr('width',175)
+    .attr('height',75)
+    .attr('x',100)
+    .attr('y',250);
   },
   inOutAnim(){
     d3.select('.colorTitleD3ID')
@@ -135,6 +149,43 @@ let colorTM = {
     .duration(500)
     .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
   },
+  gameOverTitle(){
+    // gameOverTitle group
+    d3.select('svg')
+    .append('g')
+    .classed('gameOverTitleD3ID',true)
+    .append('svg:image')
+    .attr('xlink:href', './img/gameOverTitle.svg')
+    .attr('width',175)
+    .attr('height',75)
+    .attr('x',100)
+    .attr('y',250);
+  },
+  gameOverInOutAnim(){
+    d3.select('.gameOverTitleD3ID')
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')')
+    .transition()
+    .duration(500)
+    .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
+    .transition()
+    .on('end',function(){
+      d3.select('.gameOverTitleD3ID').remove();
+    });
+  },
+  gameOverOutInAnim(){
+  d3.select('.gameOverTitleD3ID')
+    .attr('transform', 'translate(' + 0 + ',' + -350 + ')')
+    .transition()
+    .duration(500)
+    .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
+  },
+  gameOverAnim(){
+    //alert('Game Over Screen');
+    colorTM.gameOverTitle();
+    colorTM.gameOverOutInAnim();
+    colorTM.addClassToUserBtn();
+    d3.select('.userBtnD3ID').on("click", colorTM.restartGame);
+  },
   startGame(){
     colorTM.makeBar();
     colorTM.makeScore();
@@ -142,7 +193,10 @@ let colorTM = {
     colorTM.inOutAnim();
     colorTM.removeClassFromUserBtn();
     colorTM.addOpacityToUserBtn();
+    colorTM.addOpacityToQuitBtn();
     colorTM.removeOnClickFromUserBtn();
+    colorTM.removeOnClickFromQuitBtn();
+    console.log('startGame');
   },
   quitGame(){
     d3.selectAll('g').remove();
@@ -152,12 +206,29 @@ let colorTM = {
     colorTM.userBtn();
     colorTM.quitBtn();
     colorTM.colorTapTitle();
+    colorTM.outInAnim();
     colorTM.addClassToUserBtn();
     d3.select('.userBtnD3ID').on("click", colorTM.startGame);
     d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
   },
   gameOver(){
     colorTM.gameOverAnim();
+    colorTM.removeOpacityToQuitBtn();
+    colorTM.removeOpacityToUserBtn();
+    d3.select('.colorTitleD3ID').remove();
+    d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
+    d3.select('rect').remove();
+    console.log('gameOver');
+  },
+  restartGame(){
+    d3.select('.scoreD3ID').remove();
+    colorTM.score.current = 0;
+    colorTM.makeBar();
+    colorTM.makeScore();
+    colorTM.gameOverInOutAnim();
+    colorTM.removeClassFromUserBtn();
+    colorTM.addOpacityToUserBtn();
+    console.log('restartGame');
   },
   makeBarClassed(){
     d3.select('svg')
@@ -166,6 +237,7 @@ let colorTM = {
   },
   makeBar(){
     var degrees = Math.floor(Math.random() * 360);
+
     colors = [
        '#7f59ab',// purple
        '#7ec434', // green
@@ -187,11 +259,11 @@ let colorTM = {
     .attr('y', -colorTM.bars.width/2)
     .attr(colorTM.bars.pntValAttr,colorTM.bars.bar.pointValue)
     .attr('transform', 'translate(' + 195 + ',' + 337 + ') rotate('+degrees+')')
-    .style('fill', function(d,int) {
-      //debugger;
+    .style('fill', function(d,colors) {
       console.log(barColors);
       return barColors;
     });
+
     d3.selectAll('rect')
     .attr('height', colorTM.bars.width)
     .transition()
@@ -228,8 +300,6 @@ let colorTM = {
     colorTM.userBtn();
     colorTM.quitBtn();
     colorTM.colorTapTitle();
-  },
-  gameOverAnim(){
-    alert('Game Over Screen');
+    colorTM.outInAnim();
   }
 };

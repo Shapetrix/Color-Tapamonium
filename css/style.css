@@ -10,11 +10,11 @@ body{
   align-items: center;
 }
 .scoreD3ID{
-  font-size: 18px;
+  font-size: 14px;
   font-family: "impact", impact, serif;
 }
 .scoreTextD3ID{
-  font-size: 30px;
+  font-size: 25px;
   font-family: "impact", impact, serif;
 }
 .svg-container {
