@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   colorTM.makeBoard();
   colorTM.makeHud();
   colorTM.addClassToUserBtn();
-  colorTM.bars.count = 0;
   d3.select('.userBtnD3ID').on("click", colorTM.startGame);
   d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
 });
@@ -189,6 +188,7 @@ let colorTM = {
     d3.select('.userBtnD3ID').on("click", colorTM.restartGame);
   },
   startGame(){
+    colorTM.bars.count = 0;
     colorTM.makeBar();
     colorTM.makeScore();
     colorTM.makeScoreText();
@@ -202,6 +202,7 @@ let colorTM = {
   },
   quitGame(){
     d3.selectAll('g').remove();
+    colorTM.bars.count = 0;
     colorTM.score.current = 0;
     colorTM.makeBarClassed();
     colorTM.startHud();
@@ -220,10 +221,12 @@ let colorTM = {
     d3.select('.colorTitleD3ID').remove();
     d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
     d3.select('rect').remove();
+    colorTM.bars.count = 0;
     console.log('gameOver');
   },
   restartGame(){
     d3.select('.scoreD3ID').remove();
+    colorTM.bars.count = 0;
     colorTM.score.current = 0;
     colorTM.makeBar();
     colorTM.makeScore();
@@ -241,16 +244,17 @@ let colorTM = {
     .classed('barD3ID',true);
   },
   makeNewBars(){
-    var barClickCount = colorTM.bars.count;
-      if(barClickCount == 5){
+      if(colorTM.bars.count == 5){
+        colorTM.makeBar();
         colorTM.makeBar();
       }else{
         colorTM.makeBar();
       };
   },
   makeBar(){
+    colorTM.bars.count++;
+    console.log(colorTM.bars.count);
     var degrees = Math.floor(Math.random() * 360);
-
     colors = [
        '#7f59ab',// purple
        '#7ec434', // green
@@ -260,7 +264,6 @@ let colorTM = {
        '#f3bb34', // yellow
      ];
     var barColors = colors[Math.floor(Math.random() * colors.length)];
-
     d3.select('.barD3ID')
     .append('rect')
     .on('click', colorTM.barClick)
@@ -276,7 +279,6 @@ let colorTM = {
       console.log(barColors);
       return barColors;
     });
-
     d3.selectAll('rect')
     .attr('height', colorTM.bars.width)
     .transition()
@@ -292,8 +294,6 @@ let colorTM = {
   },
   barClick(){
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
-    colorTM.bars.count++;
-    console.log(colorTM.bars.count);
     d3.selectAll('rect')
     .transition()
     .attr('height', colorTM.bars.width)
