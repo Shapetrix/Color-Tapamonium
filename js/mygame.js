@@ -19,8 +19,10 @@ let colorTM = {
   bars: {
     width: 30,
     height: 200,
+    spawnRate: 20000,
+    hardness: 25,
     count: 1,
-    timeout: 10000,
+    timeout: 10000, // this ends game on bar
     pntValAttr: "pointValue",
     barObjectID: "rect.bar",
     bar: {
@@ -228,7 +230,7 @@ let colorTM = {
     d3.select('.scoreD3ID').remove();
     colorTM.bars.count = 0;
     colorTM.score.current = 0;
-    colorTM.makeBar();
+    //colorTM.makeBar();
     colorTM.makeScore();
     colorTM.gameOverInOutAnim();
     colorTM.removeOnClickFromUserBtn();
@@ -243,14 +245,14 @@ let colorTM = {
     .append('g')
     .classed('barD3ID',true);
   },
-  makeNewBars(){
-      if(colorTM.bars.count == 5){
-        colorTM.makeBar();
-        colorTM.makeBar();
-      }else{
-        colorTM.makeBar();
-      };
-  },
+  // makeNewBars(){
+  //     if(colorTM.bars.count == 5){
+  //       colorTM.makeBar();
+  //       colorTM.makeBar();
+  //     }else{
+  //       colorTM.makeBar();
+  //     };
+//},
   makeBar(){
     colorTM.bars.count++;
     console.log(colorTM.bars.count);
@@ -293,8 +295,10 @@ let colorTM = {
     });
   },
   barClick(){
+    //event.preventDefault();
+    d3.select(this).on("click", null);
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
-    d3.selectAll('rect')
+    d3.select(this)
     .transition()
     .attr('height', colorTM.bars.width)
     .duration(colorTM.bars.bar.durationTime)
@@ -302,12 +306,16 @@ let colorTM = {
       d3.select('.scoreD3ID').remove();
       colorTM.makeScore();
       d3.select(this).remove();
-      colorTM.makeNewBars();
+      colorTM.makeBar();
     });
   },
   updateScore(value){
     colorTM.score.current = colorTM.score.current + parseInt(value);
     d3.select('.scoreD3ID').text(colorTM.score.current);
+    if(Math.floor(colorTM.score.current / colorTM.bars.hardness)){
+      colorTM.makeBar();
+      console.log('i hit 25');
+    }
   },
   makeHud(){
     // draw order is from top to bottom
