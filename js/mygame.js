@@ -295,7 +295,7 @@ let colorTM = {
     });
   },
   barClick(){
-    //event.preventDefault();
+    event.preventDefault();
     d3.select(this).on("click", null);
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
     d3.select(this)
@@ -312,9 +312,18 @@ let colorTM = {
   updateScore(value){
     colorTM.score.current = colorTM.score.current + parseInt(value);
     d3.select('.scoreD3ID').text(colorTM.score.current);
-    if(Math.floor(colorTM.score.current / colorTM.bars.hardness)){
-      colorTM.makeBar();
-      console.log('i hit 25');
+    switch(colorTM.bars.count){
+      case 5:
+        colorTM.makeBar();
+        break;
+      case 10:
+        colorTM.makeBar();
+        break;
+      case 25:
+        colorTM.makeBar();
+        break;
+      default:
+        console.log('no case found');
     }
   },
   makeHud(){
