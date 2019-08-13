@@ -230,7 +230,7 @@ let colorTM = {
     d3.select('.scoreD3ID').remove();
     colorTM.bars.count = 0;
     colorTM.score.current = 0;
-    //colorTM.makeBar();
+    colorTM.makeBar();
     colorTM.makeScore();
     colorTM.gameOverInOutAnim();
     colorTM.removeOnClickFromUserBtn();
@@ -245,14 +245,6 @@ let colorTM = {
     .append('g')
     .classed('barD3ID',true);
   },
-  // makeNewBars(){
-  //     if(colorTM.bars.count == 5){
-  //       colorTM.makeBar();
-  //       colorTM.makeBar();
-  //     }else{
-  //       colorTM.makeBar();
-  //     };
-//},
   makeBar(){
     colorTM.bars.count++;
     console.log(colorTM.bars.count);
@@ -292,10 +284,10 @@ let colorTM = {
     .duration(colorTM.bars.bar.durationTime)
     .on('end',function(){
       colorTM.gameOver();
+      d3.selectAll('rect').remove();
     });
   },
   barClick(){
-    event.preventDefault();
     d3.select(this).on("click", null);
     colorTM.updateScore(d3.select(this).attr(colorTM.bars.pntValAttr));
     d3.select(this)
@@ -314,6 +306,7 @@ let colorTM = {
     d3.select('.scoreD3ID').text(colorTM.score.current);
     switch(colorTM.bars.count){
       case 5:
+        //debugger;
         colorTM.makeBar();
         break;
       case 10:
