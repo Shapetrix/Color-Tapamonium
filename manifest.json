@@ -13,7 +13,7 @@
     "generated" : "true",
     "icons" : [
         {
-            "src": "/img/colorTap_icon.png",
+            "src": "./img/colorTap_icon.png",
             "sizes": "512x512",
             "image": "image/png"
         }
