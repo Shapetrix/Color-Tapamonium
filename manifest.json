@@ -1,9 +1,8 @@
 {"dir" : "ltr",
     "lang" : "English",
     "name" : "Color Tapamonium",
-    "scope" : "/Color-Tapamonium/",
     "display" : "fullscreen",
-    "start_url" : "https://shapetrix.github.io/Color-Tapamonium/",
+    "start_url" : "index.html",
     "short_name" : "Color Tap",
     "theme_color" : "#333333",
     "description" : "this is the best game ever!!!",
@@ -15,6 +14,7 @@
     "icons" : [
         {
             "src": "/img/colorTap_icon.png",
-            "sizes": "512x512"
+            "sizes": "512x512",
+            "image": "image/png"
         }
     ]}
