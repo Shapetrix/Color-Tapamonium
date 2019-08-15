@@ -11,6 +11,7 @@ let colorTM = {
   mainObject: null,
   mainSelect: '.svg-container',
   viewBox: '0 0 400 600',
+  running: true,
   score:{
     selectorByID: "Score",
     current: 0,
@@ -203,6 +204,7 @@ let colorTM = {
     console.log('startGame');
   },
   quitGame(){
+    colorTM.running = true;
     d3.selectAll('g').remove();
     colorTM.bars.count = 0;
     colorTM.score.current = 0;
@@ -217,16 +219,20 @@ let colorTM = {
     d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
   },
   gameOver(){
-    colorTM.gameOverAnim();
-    colorTM.removeOpacityToQuitBtn();
-    colorTM.removeOpacityToUserBtn();
-    d3.select('.colorTitleD3ID').remove();
-    d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
-    d3.select('rect').remove();
-    colorTM.bars.count = 0;
-    console.log('gameOver');
+    if(colorTM.running){
+      colorTM.running = false;
+      d3.select('rect').remove();
+      colorTM.gameOverAnim();
+      colorTM.removeOpacityToQuitBtn();
+      colorTM.removeOpacityToUserBtn();
+      d3.select('.colorTitleD3ID').remove();
+      d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
+      colorTM.bars.count = 0;
+      console.log('gameOver');
+    }
   },
   restartGame(){
+    colorTM.running = true;
     d3.select('.scoreD3ID').remove();
     colorTM.bars.count = 0;
     colorTM.score.current = 0;
@@ -272,8 +278,7 @@ let colorTM = {
     .style('fill', function(d,colors) {
       console.log(barColors);
       return barColors;
-    });
-    d3.selectAll('rect')
+    })
     .attr('height', colorTM.bars.width)
     .transition()
     .attr('height', colorTM.bars.height)
@@ -284,7 +289,6 @@ let colorTM = {
     .duration(colorTM.bars.bar.durationTime)
     .on('end',function(){
       colorTM.gameOver();
-      d3.selectAll('rect').remove();
     });
   },
   barClick(){
@@ -306,7 +310,6 @@ let colorTM = {
     d3.select('.scoreD3ID').text(colorTM.score.current);
     switch(colorTM.bars.count){
       case 5:
-        //debugger;
         colorTM.makeBar();
         break;
       case 10:
