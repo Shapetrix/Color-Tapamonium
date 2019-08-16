@@ -220,20 +220,20 @@ let colorTM = {
   },
   gameOver(){
     if(colorTM.running){
-      colorTM.running = false;
       d3.select('rect').remove();
+      colorTM.bars.count = 0;
+      colorTM.running = false;
       colorTM.gameOverAnim();
       colorTM.removeOpacityToQuitBtn();
       colorTM.removeOpacityToUserBtn();
       d3.select('.colorTitleD3ID').remove();
       d3.select('.quitBtnD3ID').on("click", colorTM.quitGame);
-      colorTM.bars.count = 0;
       console.log('gameOver');
     }
   },
   restartGame(){
-    colorTM.running = true;
     d3.select('.scoreD3ID').remove();
+    colorTM.running = true;
     colorTM.bars.count = 0;
     colorTM.score.current = 0;
     colorTM.makeBar();
