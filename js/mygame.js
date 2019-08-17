@@ -220,7 +220,7 @@ let colorTM = {
   },
   gameOver(){
     if(colorTM.running){
-      d3.select('rect').remove();
+      d3.selectAll('rect').remove();
       colorTM.bars.count = 0;
       colorTM.running = false;
       colorTM.gameOverAnim();
