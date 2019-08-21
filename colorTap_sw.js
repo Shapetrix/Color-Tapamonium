@@ -12,6 +12,8 @@ const assets = [
   '/img/playBtn.svg',
   '/img/quitBtn.svg',
   '/img/startHud.svg',
+  '/img/add2home.svg',
+  '/img/share.svg',
   '/fallback.html',
 ];
 
