@@ -6,7 +6,7 @@ const assets = [
   '/js/app.js',
   '/js/myd3.js',
   '/js/mygame.js',
-  '/js/ios-detection.js',
+  // '/js/ios-detection.js',
   '/css/style.css',
   '/img/colorTapTitle.svg',
   '/img/gameOverTitle.svg',
