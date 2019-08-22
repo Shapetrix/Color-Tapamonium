@@ -12,23 +12,18 @@
     <link rel='manifest' href='./manifest.json'>
     <!-- ios support -->
     <meta name="theme-color" content="#333333" >
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar" content="#333333" >
-    <link rel='apple-touch-icon' href='/img/icons/ios/ios-appicon-76-76.png'>
-    <link rel='apple-touch-icon' href='/img/icons/iso/ios-appicon-120-120.png'>
-    <link rel='apple-touch-icon' href='/img/icons/iso/ios-appicon-152-152.png'>
-    <link rel='apple-touch-icon' href='/img/icons/iso/ios-appicon-180-180.png'>
-    <link rel='apple-touch-icon' href='/img/icons/iso/ios-appicon-1024-1024.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-640-960.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-640-1136.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-750-1334.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-768-1024.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-1024-768.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-1242-2208.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-1334-750.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-1536-2048.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-2048-1536.png'>
-    <link rel='apple-touch-startup-image' href='./img/icons/iso/ios-launchimage-2208-1242.png'>
+    <meta name="apple-mobile-web-app-status-bar" content="#333333">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel='apple-touch-icon' size='76x76' href='/img/icons/ios/ios-appicon-76-76.png'>
+    <link rel='apple-touch-icon' size='120x120' href='/img/icons/iso/ios-appicon-120-120.png'>
+    <link rel='apple-touch-icon' size='152x152' href='/img/icons/iso/ios-appicon-152-152.png'>
+    <link rel='apple-touch-icon' size='180x180' href='/img/icons/iso/ios-appicon-180-180.png'>
+    <link rel='apple-touch-icon' size='1024x1024' href='/img/icons/iso/ios-appicon-1024-1024.png'>
+    <link rel='apple-touch-startup-image' media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href='/img/icons/iso/ios-launchimage-640-960.png'>
+    <link rel='apple-touch-startup-image' media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href='/img/icons/iso/ios-launchimage-640-1136.png'>
+    <link rel='apple-touch-startup-image' media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href='/img/icons/iso/ios-launchimage-750-1334.png'>
+    <link rel='apple-touch-startup-image' media="(device-width: 667px) and (device-height: 375px) and (-webkit-device-pixel-ratio: 2)" href='/img/icons/iso/ios-launchimage-1334-750.png'>
+    <link rel='apple-touch-startup-image' media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href='/img/icons/iso/ios-launchimage-1536-2048.png'>
 
     <!-- import the webpage's javascript file -->
     <script src="./js/mygame.js" defer></script>
@@ -40,6 +35,12 @@
   </head>
   <body>
     <div unselectable="on" class="svg-container"></div>
+    <button type="button" class="ad2hs-prompt">Install Web App</button>
+    <div class="ios-prompt">
+      <span style="color: rgb(187, 187, 187); float: right; margin-top: -14px; margin-right: -11px;">&times;</span>
+      <img src="./img/add2home.svg" style="float: left; height: 80px; width: auto; margin-top: -8px; margin-right: 1rem;">
+      <p style="margin-top: -3px; line-height: 1.3rem;">To install this Web App in your iPhone/iPad press <img src="./img/share.svg" style="display: inline-block; margin-top: 4px; margin-bottom: -4px; height: 20px; width: auto;"> and then Add to Home Screen.</p>
+    </div>
     <script src="./js/app.js" defer></script>
   </body>
 </html>
