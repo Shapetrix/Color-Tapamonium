@@ -2,19 +2,20 @@ const staticCacheName = 'site-static-v1';
 const dynamicCacheName = 'site-dynamic-v1';
 const assets = [
   '/',
-  '/index.html',
-  '/js/app.js',
-  '/js/myd3.js',
-  '/js/mygame.js',
-  '/css/style.css',
-  '/img/colorTapTitle.svg',
-  '/img/gameOverTitle.svg',
-  '/img/playBtn.svg',
-  '/img/quitBtn.svg',
-  '/img/startHud.svg',
-  '/img/add2home.svg',
-  '/img/share.svg',
-  '/fallback.html',
+  './index.html',
+  './js/app.js',
+  './js/myd3.js',
+  './js/mygame.js',
+  './js/ios-detection.js',
+  './css/style.css',
+  './img/colorTapTitle.svg',
+  './img/gameOverTitle.svg',
+  './img/playBtn.svg',
+  './img/quitBtn.svg',
+  './img/startHud.svg',
+  './img/add2home.svg',
+  './img/share.svg',
+  './fallback.html',
 ];
 
 // cache size limit function
@@ -66,7 +67,7 @@ self.addEventListener('fetch', evt => {
       });
     }).catch(() => {
       if(evt.request.url.indexOf('.html') > -1){
-        return caches.match('/fallback.html');
+        return caches.match('./fallback.html');
       }
     })
   );
