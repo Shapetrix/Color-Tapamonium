@@ -6,7 +6,6 @@ const assets = [
   '/js/app.js',
   '/js/myd3.js',
   '/js/mygame.js',
-  // '/js/ios-detection.js',
   '/css/style.css',
   '/img/colorTapTitle.svg',
   '/img/gameOverTitle.svg',
@@ -67,7 +66,7 @@ self.addEventListener('fetch', evt => {
       });
     }).catch(() => {
       if(evt.request.url.indexOf('.html') > -1){
-        return caches.match('/fallback.html');
+        return caches.match('./fallback.html');
       }
     })
   );
